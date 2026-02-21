@@ -22,9 +22,9 @@ RUN mkdir -p /data
 # Exponer puerto para Streamlit
 EXPOSE 8501
 
-# Arrancar Streamlit
-CMD ["streamlit", "run", "app.py", \
-     "--server.port=8501", \
-     "--server.address=0.0.0.0", \
-     "--server.headless=true", \
-     "--browser.gatherUsageStats=false"]
+# Arrancar Streamlit usando $PORT de Railway (o 8501 por defecto)
+CMD streamlit run app.py \
+    --server.port=${PORT:-8501} \
+    --server.address=0.0.0.0 \
+    --server.headless=true \
+    --browser.gatherUsageStats=false
